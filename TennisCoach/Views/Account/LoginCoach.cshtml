@@ -1,0 +1,45 @@
+﻿@model TennisCoach.Models.CoachLoginViewModel
+
+<div style="font-family: Arial, sans-serif; color: #2c3e50; max-width: 400px; margin: 40px auto; padding: 20px; background-color: #ecf0f1; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; color: #34495e;">Coach Login</h2>
+    <form asp-action="LoginCoach" method="post" novalidate>
+        <div class="form-group">
+            <label for="Email" style="font-size: 16px; color: #34495e;">Email</label>
+            <input type="email" asp-for="Email" class="form-control" required style="padding: 10px; border-radius: 4px; border: 1px solid #bdc3c7;">
+            <span asp-validation-for="Email" class="text-danger" style="font-size: 14px;"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password" style="font-size: 16px; color: #34495e;">Password</label>
+            <input type="password" asp-for="Password" class="form-control" required style="padding: 10px; border-radius: 4px; border: 1px solid #bdc3c7; margin-bottom: 15px;">
+            <span asp-validation-for="Password" class="text-danger" style="font-size: 14px;"></span>
+        </div>
+
+        <button type="submit" style="background-color: #3498db; border: none; padding: 10px 20px; border-radius: 4px; color: white; font-size: 16px; cursor: pointer; width: 100%; transition: background-color 0.3s;">
+            Login
+        </button>
+    </form>
+
+    <div style="text-align: center; margin-top: 15px;">
+        <p style="font-size: 14px; color: #34495e;">Don't have an account? <a href="@Url.Action("RegCoach", "Account")" style="color: #3498db; text-decoration: none;">Register here</a>.</p>
+    </div>
+</div>
+
+<style>
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #bdc3c7;
+    }
+
+    button:hover {
+        background-color: #2980b9; /* Darker shade on hover */
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

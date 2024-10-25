@@ -1,0 +1,166 @@
+USE [TennisClub_DB]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 25-10-2024 04:44:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Admins]    Script Date: 25-10-2024 04:44:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Admins](
+	[AdminId] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[AdminId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Coaches]    Script Date: 25-10-2024 04:44:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Coaches](
+	[CoachId] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](max) NULL,
+	[LastName] [nvarchar](max) NULL,
+	[Biography] [nvarchar](max) NULL,
+	[Photo] [varbinary](max) NULL,
+	[Email] [nvarchar](255) NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CoachId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Enrollments]    Script Date: 25-10-2024 04:44:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Enrollments](
+	[EnrollmentId] [int] IDENTITY(1,1) NOT NULL,
+	[MemberId] [int] NOT NULL,
+	[ScheduleId] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[EnrollmentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Members]    Script Date: 25-10-2024 04:44:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Members](
+	[MemberId] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nchar](200) NULL,
+	[LastName] [nchar](200) NOT NULL,
+	[Email] [nchar](400) NULL,
+	[Active] [bit] NOT NULL,
+	[Password] [nvarchar](255) NULL,
+ CONSTRAINT [PK_Members_New] PRIMARY KEY CLUSTERED 
+(
+	[MemberId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Schedules]    Script Date: 25-10-2024 04:44:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Schedules](
+	[ScheduleId] [int] IDENTITY(1,1) NOT NULL,
+	[Location] [nchar](200) NULL,
+	[EventName] [nvarchar](200) NULL,
+	[Description] [nvarchar](max) NULL,
+	[Date] [date] NOT NULL,
+	[CoachId] [int] NOT NULL,
+	[MemberId] [int] NULL,
+ CONSTRAINT [PK_Schedules] PRIMARY KEY CLUSTERED 
+(
+	[ScheduleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Enrollments]  WITH CHECK ADD FOREIGN KEY([MemberId])
+REFERENCES [dbo].[Members] ([MemberId])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Enrollments]  WITH CHECK ADD FOREIGN KEY([ScheduleId])
+REFERENCES [dbo].[Schedules] ([ScheduleId])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Schedules]  WITH CHECK ADD  CONSTRAINT [FK_Schedules_Coaches] FOREIGN KEY([CoachId])
+REFERENCES [dbo].[Coaches] ([CoachId])
+GO
+ALTER TABLE [dbo].[Schedules] CHECK CONSTRAINT [FK_Schedules_Coaches]
+GO
+ALTER TABLE [dbo].[Schedules]  WITH CHECK ADD  CONSTRAINT [FK_Schedules_Members] FOREIGN KEY([MemberId])
+REFERENCES [dbo].[Members] ([MemberId])
+GO
+ALTER TABLE [dbo].[Schedules] CHECK CONSTRAINT [FK_Schedules_Members]
+GO
+
+-- Insert data into Admins table
+INSERT INTO [dbo].[Admins] (Username, Password) VALUES
+('admin1', 'password1'),
+('admin2', 'password2');
+
+
+-- Insert data into Coaches table
+INSERT INTO [dbo].[Coaches] (FirstName, LastName, Biography, Photo, Email, Password) VALUES
+('John', 'Doe', 'Experienced coach', NULL, 'John@example.com', 'coach123'),
+('Jane', 'Smith', 'Specializes in doubles', NULL, 'Jane@example.com', 'coach234'),
+('Emily', 'Johnson', 'Focuses on youth training', NULL, 'Emily@example.com', 'coach345'),
+('Michael', 'Brown', 'Fitness expert', NULL, 'Michael@example.com', 'coach456'),
+('Sarah', 'Davis', 'Former pro player', NULL, 'Sarah@example.com', 'coach567');
+
+-- Insert data into Members table
+INSERT INTO [dbo].[Members] (FirstName, LastName, Email, Active, Password) VALUES
+('Ali', 'Wal', 'Ali@example.com', 1, 'member123'),
+('Bob', 'Mart', 'Bob@example.com', 1, 'member234'),
+('John', 'Bob', 'John@example.com', 1, 'member345'),
+('Jane', 'Smith', 'Jane@example.com', 1, 'member456'),
+('Eva', 'Wilson', 'Eva@example.com', 1, 'member567');
+
+-- Insert data into Schedules table
+INSERT INTO [dbo].[Schedules] (Location, EventName, Description, Date, CoachId, MemberId) VALUES
+('Court 1', 'Tennis Training', 'Group training session', '2024-11-01', 1, NULL),
+('Court 2', 'Doubles Match', 'Friendly doubles match', '2024-11-02', 2, NULL),
+('Court 3', 'Kids Coaching', 'Coaching for young players', '2024-11-03', 3, NULL),
+('Court 1', 'Fitness Session', 'Focus on fitness training', '2024-11-04', 4, NULL),
+('Court 2', 'Advanced Techniques', 'Advanced skills workshop', '2024-11-05', 5, NULL);
+
+-- Insert data into Enrollments table
+INSERT INTO [dbo].[Enrollments] (MemberId, ScheduleId) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);

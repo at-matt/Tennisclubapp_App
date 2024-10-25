@@ -1,0 +1,47 @@
+﻿@model List<TennisCoach.Models.Admins>
+
+<h2 style="font-family: Arial, sans-serif; color: #2c3e50; text-align: center;">Welcome Admin!</h2>
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+        <h5 style="font-size: 18px; font-weight: bold; color: #34495e;">
+            <i class="fas fa-user-graduate" style="margin-right: 8px;"></i> Memberships
+        </h5>
+        <p style="font-size: 14px; color: #7f8c8d;">View all memberships with Coach Name and Member Name</p>
+        <a href="@Url.Action("ViewMemberships", "Admin")" style="font-size: 14px; color: #3498db; text-decoration: none;">View Memberships</a>
+    </div>
+
+    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+        <h5 style="font-size: 18px; font-weight: bold; color: #34495e;">
+            <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i> Create Schedules
+        </h5>
+        <p style="font-size: 14px; color: #7f8c8d;">Easily create schedules for coaches ensuring efficient planning of events.</p>
+        <a href="@Url.Action("CreateSchedule", "Admin")" style="font-size: 14px; color: #3498db; text-decoration: none;">Create Schedules</a>
+    </div>
+
+    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+        <h5 style="font-size: 18px; font-weight: bold; color: #34495e;">
+            <i class="fas fa-check-circle" style="margin-right: 8px;"></i> Coaches and Schedules
+        </h5>
+        <p style="font-size: 14px; color: #7f8c8d;">Assign coaches to their respective schedules to enhance coaching activities and improve engagement.</p>
+        <a href="@Url.Action("MatchCoach", "Admin")" style="font-size: 14px; color: #3498db; text-decoration: none;">Match Coaches with Schedules</a>
+    </div>
+</div>
+
+
+<!-- Announcements Section -->
+<div style="margin-top: 40px; text-align: center;">
+    <h3 style="font-family: Arial, sans-serif; color: #2c3e50;">Recent Announcements</h3>
+    <p style="font-size: 16px; color: #7f8c8d;">Keep up with the latest updates and notices:</p>
+    <ul style="list-style-type: none; padding: 0; margin: 0; display: inline-block;">
+        <li style="font-size: 14px; color: #34495e;">📅 New policies implemented from December 1st.</li>
+        <li style="font-size: 14px; color: #34495e;">🔔 Monthly meeting scheduled for November 20th.</li>
+        <li style="font-size: 14px; color: #34495e;">📊 Please submit your reports by end of the month.</li>
+    </ul>
+</div>
+
+
+
+<div style="text-align: center; margin-top: 20px;">
+    <a asp-controller="Home" asp-action="Index" class="btn" style="background-color: #2c3e50; border: none; padding: 10px 20px; border-radius: 4px; color: white; font-size: 16px; cursor: pointer;">Logout</a>
+</div>

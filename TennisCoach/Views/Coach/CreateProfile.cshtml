@@ -1,0 +1,56 @@
+﻿@model TennisCoach.Models.Coaches
+@if (TempData["SuccessMessage"] != null)
+
+
+
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+
+
+
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<h2 style="font-family: Arial, sans-serif; color: #2c3e50; text-align: center;">Create Coach Profile</h2>
+
+<form asp-action="CreateProfile" asp-route-id="@Model.CoachId" method="post" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto; background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <input type="hidden" asp-for="CoachId" />
+    <div class="form-group" style="margin-bottom: 15px;">
+        <label asp-for="FirstName" style="font-family: Arial, sans-serif; font-weight: bold; color: #34495e;"></label>
+        <input asp-for="FirstName" class="form-control" style="font-family: Arial, sans-serif;" />
+    </div>
+
+    <div class="form-group" style="margin-bottom: 15px;">
+        <label asp-for="LastName" style="font-family: Arial, sans-serif; font-weight: bold; color: #34495e;"></label>
+        <input asp-for="LastName" class="form-control" style="font-family: Arial, sans-serif;" />
+    </div>
+
+    <div class="form-group" style="margin-bottom: 15px;">
+        <label asp-for="Biography" style="font-family: Arial, sans-serif; font-weight: bold; color: #34495e;"></label>
+        <textarea asp-for="Biography" class="form-control" style="font-family: Arial, sans-serif;"></textarea>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 15px;">
+        <label asp-for="PhotoFile" style="font-family: Arial, sans-serif; font-weight: bold; color: #34495e;"></label>
+        <input asp-for="PhotoFile" type="file" class="form-control" style="font-family: Arial, sans-serif;" />
+        <span asp-validation-for="PhotoFile" class="text-danger" style="font-family: Arial, sans-serif; font-size: 14px;"></span>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="submit" class="btn btn-primary" style="background-color: #3498db; border: none; padding: 10px 20px; border-radius: 4px; color: white; font-family: Arial, sans-serif; font-size: 16px;">Create Profile</button>
+    </div>
+</form>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a asp-action="Details" style="font-family: Arial, sans-serif; font-size: 16px; color: #3498db; text-decoration: none;">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

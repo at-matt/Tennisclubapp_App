@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TennisCoach.Models.Schedules>
+
+<h1 style="font-family: 'Arial', sans-serif; color: #2c3e50; text-align: center; margin-bottom: 30px;">View Memberships</h1>
+
+<div style="display: flex; justify-content: center;">
+    <table class="table table-striped table-hover" style="width: 80%; background-color: #ecf0f1; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <thead style="background-color: #34495e; color: white;">
+            <tr>
+                <th style="padding: 15px;">Event Name</th>
+                <th style="padding: 15px;">Coach Name</th>
+                <th style="padding: 15px;">Member Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var schedule in Model)
+            {
+                <tr>
+                    <td style="padding: 15px;">@schedule.EventName</td>
+                    <td style="padding: 15px;">@schedule.Coach.FirstName @schedule.Coach.LastName</td>
+                    <td style="padding: 15px;">@schedule.Member.FirstName @schedule.Member.LastName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a asp-action="Index" class="btn btn-primary" style="background-color: #2c3e50; border: none; padding: 10px 20px; border-radius: 4px; color: white; font-size: 16px; text-decoration: none;">Back</a>
+</div>
+

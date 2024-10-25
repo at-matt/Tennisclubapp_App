@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .login-card {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: #87ceeb; /* Sky Blue Color */
+        }
+
+            .login-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            }
+
+        .hero-image {
+            width: 80%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+            .btn-primary:hover {
+                background-color: #1f618d;
+            }
+
+        .text-center {
+            margin-bottom: 20px;
+        }
+
+        /* Ensuring all cards have the same height */
+        .card {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <img src="https://cdn.britannica.com/78/249578-050-01D46C9B/Novak-Djokovic-Serbia-US-Open-2023.jpg" alt="Tennis Court" class="hero-image">
+        </div>
+
+        <div class="text-center mb-4">
+            <h2>Welcome to Our Tennis Club!</h2>
+            <p>Join us for an exciting journey in tennis! Whether you’re a coach, member, or admin, we offer great services and resources to enhance your experience.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- Admin Login Card -->
+            <div class="col-md-4 d-flex">
+                <div class="card login-card p-4 h-100">
+                    <h5 class="card-title text-center">Admin Login</h5>
+                    <p class="card-text text-center">As an admin, you can oversee operations, manage users, and review performance metrics. Please log in to access the admin panel.</p>
+                    <div class="text-center mt-auto">
+                        <a href="@Url.Action("LoginAdmin", "Account")" class="btn btn-primary btn-block">Admin Login</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Login Card -->
+            <div class="col-md-4 d-flex">
+                <div class="card login-card p-4 h-100">
+                    <h5 class="card-title text-center">Coach Login</h5>
+                    <p class="card-text text-center">As a coach, you can manage your sessions, view schedules, and track member progress. Please log in to access your account.</p>
+                    <div class="text-center mt-auto">
+                        <a href="@Url.Action("LoginCoach", "Account")" class="btn btn-primary btn-block">Coach Login</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Login Card -->
+            <div class="col-md-4 d-flex">
+                <div class="card login-card p-4 h-100">
+                    <h5 class="card-title text-center">Member Login</h5>
+                    <p class="card-text text-center">As a member, you can enroll in sessions, view schedules, and manage your account. Please log in to continue.</p>
+                    <div class="text-center mt-auto">
+                        <a href="@Url.Action("LoginMember", "Account")" class="btn btn-primary btn-block">Member Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

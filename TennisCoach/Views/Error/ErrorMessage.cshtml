@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        /* Custom light blue color */
+        .bg-light-blue {
+            background-color: #d0e7ff;
+        }
+
+        .text-light-blue {
+            color: #5a9bd4;
+        }
+
+        .btn-light-blue {
+            background-color: #5a9bd4;
+            color: white;
+        }
+
+            .btn-light-blue:hover {
+                background-color: #4a8ac3;
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-light-blue">
+                    <h5 class="modal-title text-light-blue" id="errorModalLabel">Login Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="text-light-blue fw-bold">Username or Password is incorrect</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/Home/Index" class="btn btn-light-blue">Back to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Show the modal when the page loads if there are login errors
+        $(document).ready(function () {
+            $('#errorModal').modal('show');
+        });
+    </script>
+
+</body>
+</html>

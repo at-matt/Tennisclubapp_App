@@ -1,0 +1,74 @@
+﻿@model List<TennisCoach.Models.Coaches>
+
+@if (TempData["SuccessMessage"] != null)
+
+
+
+
+
+
+
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+
+
+
+
+
+
+
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<h2 style="font-family: Arial, sans-serif; color: #2c3e50; text-align: center;">Welcome @User.Identity.Name! </h2>
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+        <h5 style="font-size: 18px; font-weight: bold; color: #34495e;">View Profile</h5>
+        <p style="font-size: 14px; color: #7f8c8d;">Access your profile details to review your personal information.</p>
+        <a href="@Url.Action("Details", "Coach")" style="font-size: 14px; color: #3498db; text-decoration: none;">Go to Profile</a>
+    </div>
+
+    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+        <h5 style="font-size: 18px; font-weight: bold; color: #34495e;">Enrolled Members</h5>
+        <p style="font-size: 14px; color: #7f8c8d;">View a list of members enrolled in your coaching events.</p>
+        <a href="@Url.Action("EnrolledMembers", "Coach")" style="font-size: 14px; color: #3498db; text-decoration: none;">Go to Enrolled Members</a>
+    </div>
+
+    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+        <h5 style="font-size: 18px; font-weight: bold; color: #34495e;">Upcoming Schedules</h5>
+        <p style="font-size: 14px; color: #7f8c8d;">Stay updated with your upcoming coaching schedules, including dates, locations, and Event Name</p>
+        <a href="@Url.Action("UpcomingSchedules", "Coach")" style="font-size: 14px; color: #3498db; text-decoration: none;">Go to Upcoming Schedules</a>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    
+</div>
+
+<div style="margin-top: 40px; text-align: center;">
+    <h3 style="font-family: Arial, sans-serif; color: #2c3e50;">Announcements</h3>
+    <p style="font-size: 16px; color: #7f8c8d;">Stay updated with the latest news and events!</p>
+    <ul style="list-style-type: none; padding: 0; margin: 0; display: inline-block;">
+        <li style="font-size: 14px; color: #34495e;">🏆 Upcoming tournament on November 15th</li>
+        <li style="font-size: 14px; color: #34495e;">📅 New coaching sessions starting next month - Check the schedule!</li>
+        <li style="font-size: 14px; color: #34495e;">🎉 Join us for our annual member meet on December 1st!</li>
+    </ul>
+</div>
+
+<!-- Tips Section -->
+<div style="margin-top: 40px; text-align: center;">
+    <h3 style="font-family: Arial, sans-serif; color: #2c3e50;">Tennis Tips & Resources</h3>
+    <p style="font-size: 16px; color: #7f8c8d;">Improve your game with these resources:</p>
+    <ul style="list-style-type: none; padding: 0; margin: 0; display: inline-block;">
+        <li style="font-size: 14px; color: #34495e;">🎾 <a href="https://www.tennis.com.au/coaching" target="_blank" style="color: #3498db; text-decoration: none;">Tennis Australia Coaching Resources</a></li>
+        <li style="font-size: 14px; color: #34495e;">🏃‍♂️ <a href="https://www.active.com/tennis/articles/10-tennis-training-tips-for-beginners" target="_blank" style="color: #3498db; text-decoration: none;">10 Tennis Training Tips for Beginners</a></li>
+       
+    </ul>
+</div>
+
+<a asp-controller="Home" asp-action="Index" class="btn" style="background-color: #2c3e50; border: none; padding: 10px 20px; border-radius: 4px; color: white; font-size: 16px; cursor: pointer;">Logout</a>
